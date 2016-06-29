@@ -16,5 +16,11 @@
   "bugs": {
     "url": "https://github.com/anthonywe/random-chat-match/issues"
   },
-  "homepage": "https://github.com/anthonywe/random-chat-match#readme"
+  "homepage": "https://github.com/anthonywe/random-chat-match#readme",
+  "dependencies": {
+    "express": "^4.14.0",
+    "express-session": "^1.13.0",
+    "jade": "^1.11.0",
+    "sequelize": "^3.23.4"
+  }
 }
