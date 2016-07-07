@@ -1,3 +1,92 @@
 #appname {
 	text-align: center;
 }
+
+#chatnamepanel {
+	margin-top: 0px;
+	height: 90px;
+}
+
+#chatpagename {
+	text-align: center;
+	margin: 0px;
+}
+
+#facebooklogin {
+	float: left;
+}
+
+#picturebox {
+	margin-left: 35px;
+	margin-top: 60px;
+}
+
+#startbtn {
+	margin-left: 35px;
+	width: 17%;
+	margin-top: 0px;
+
+}
+
+/*chat box css*/
+
+/*body {
+  padding: 3em;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 1em;
+}*/
+
+textarea {
+  resize: none;
+  border-color: red;
+  background-color: grey;
+}
+
+.inlineBlock {
+ display: inline-block;
+}
+
+.topAligned {
+ vertical-align: top;
+}
+
+#chatwindown {
+	 background-color: white; 
+	 position: fixed; 
+	 bottom: 0; 
+	 width: 100%;
+}
+
+body {
+	font: 13px Helvetica, Arial;
+	font-size: 1em;
+}
+
+#msgholder {
+	font: 13px Helvetica, Arial;
+	font-size: : 1em;
+}
+
+#chatfunc {
+	margin-top: 68px;
+}
+
+#msgholder {
+	width: 500px;
+	height: 300px;
+	background-color: white;
+	opacity: 0,5;
+	font: 10px Helvetica, Arial;
+}
+
+
+#messages { 
+ 	list-style-type: none; 
+ 	margin: 0; padding: 0;
+}
+#messages li { 
+	padding: 5px 10px;
+}
+#messages li:nth-child(odd) { 
+	background: #eee;
+}

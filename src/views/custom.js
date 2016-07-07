@@ -1,26 +1,28 @@
-$(document).ready(function(){
-  $.get('//graph.facebook.com/me/picture?fields=redirect,url&height=300', function(result){
-    console.log(result.data.url)
-    console.log("being used")
-    $('#profiel').attr('src', result.data.url)
-  // <img id="profiel" src="">
+$(document).ready(function() {
+  console.log('dom ready')
+  var socket = io();
+  $('#form').submit(function(e){
+    console.log('submit triggered')
+    e.preventDefault()
+    socket.emit('chat message', $('#m').val());
+    console.log('chat emitted: ' + $('#m').val() )
+    $('#m').val('');
+    return false;
+  });
+  socket.on('chat message', function(msg){
+    $('#messages').append($('<li>').text(msg));
+  });
 })
 
-// window.fbAsyncInit = function() {
-//   FB.init({
-//     appId      : '1032794393423272',
-//     xfbml      : true,
-//     version    : 'v2.6'
-//   });
-// };
 
-// (function(d, s, id){
-//  var js, fjs = d.getElementsByTagName(s)[0];
-//  if (d.getElementById(id)) {return;}
-//  js = d.createElement(s); js.id = id;
-//  js.src = "//connect.facebook.net/en_US/sdk.js";
-//  fjs.parentNode.insertBefore(js, fjs);
-// }(document, 'script', 'facebook-jssdk'));
+function posttobackend(fbtoken, fbid) {
+  console.log('init backend post')
+  $.post('/api', {token: fbtoken, uid: fbid}, function(result, status){
+    console.log('Post done, status: ' + status)
+    console.log('Data: ' + result)
+  })
+  console.log('post triggeed!')
+}
 
 
 // This is called with the results from from FB.getLoginStatus().
@@ -34,6 +36,8 @@ function statusChangeCallback(response) {
     if (response.status === 'connected') {
       // Logged into your app and Facebook.
       testAPI();
+      getPhoto();
+      // window.location.href = "http://localhost:3000/chat";
     } else if (response.status === 'not_authorized') {
       // The person is logged into Facebook, but not your app.
       document.getElementById('status').innerHTML = 'Please log ' +
@@ -52,6 +56,7 @@ function statusChangeCallback(response) {
   function checkLoginState() {
     FB.getLoginStatus(function(response) {
       statusChangeCallback(response);
+      // window.top.location = "localhost:3000/chat";
     });
   }
 
@@ -64,23 +69,38 @@ function statusChangeCallback(response) {
     version    : 'v2.6' // use graph api version 2.5
   });
 
-  // Now that we've initialized the JavaScript SDK, we call 
-  // FB.getLoginStatus().  This function gets the state of the
-  // person visiting this page and can return one of three states to
-  // the callback you provide.  They can be:
-  //
-  // 1. Logged into your app ('connected')
-  // 2. Logged into Facebook, but not your app ('not_authorized')
-  // 3. Not logged into Facebook and can't tell if they are logged into
-  //    your app or not.
-  //
-  // These three cases are handled in the callback function.
 
-  FB.getLoginStatus(function(response) {
-    statusChangeCallback(response);
+
+
+    FB.getLoginStatus(function(response) {
+      statusChangeCallback(response);
+    // window.top.location = "localhost:3000/chat";
   });
 
-};
+    FB.getLoginStatus(function(response) {
+      if (response.status === 'connected') {
+    // the user is logged in and has authenticated your
+    // app, and response.authResponse supplies
+    // the user's ID, a valid access token, a signed
+    // request, and the time the access token 
+    // and signed request each expire
+    var uid = response.authResponse.userID;
+    console.log(uid)
+    var accessToken = response.authResponse.accessToken;
+    console.log(accessToken)
+    // Post to backend
+    posttobackend(accessToken, uid)
+  } else if (response.status === 'not_authorized') {
+    // the user is logged in to Facebook, 
+    // but has not authenticated your app
+  } else {
+    // the user isn't logged in to Facebook.
+  }
+});
+
+
+
+  };
 
   // Load the SDK asynchronously
   (function(d, s, id) {
@@ -102,5 +122,12 @@ function statusChangeCallback(response) {
     });
   }
 
+  function getPhoto() {
+    console.log('Fetching your pictures');
+    FB.api('/me/picture?height=320', function(response) {
+      console.log( response)
+      $('#pictures').attr('src', response.data.url )
+    });
+  }
 
 //   js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.6&appId=1032794393423272";

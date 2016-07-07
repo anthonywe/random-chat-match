@@ -18,9 +18,11 @@
   },
   "homepage": "https://github.com/anthonywe/random-chat-match#readme",
   "dependencies": {
+    "body-parser": "^1.15.2",
     "express": "^4.14.0",
     "express-session": "^1.13.0",
     "jade": "^1.11.0",
+    "pg": "^6.0.1",
     "sequelize": "^3.23.4"
   }
 }

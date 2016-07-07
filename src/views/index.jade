@@ -17,11 +17,11 @@ html(lang='en' class="lime ligthen-5")
 		.row
 			div(class="valgin-wrapper")
 				h3(class="blue-text text-light-5" id="appname") Break the Ice
-		div(id="fb-root")
+			div(id="fb-root")
 
-		div
+			div
 			//- fb:login-button(scope="public_profile,email" onlogin="checkLoginState();")
-			fb:login-button(scope="public_profile,email" onlogin="checkLoginState();" data-max-rows="1" data-size="large" data-show-faces="false" data-auto-login-link="true" auto-logout-link="true")
+			fb:login-button(scope="public_profile,email" onlogin="checkLoginState();" data-max-rows="1" data-size="large" data-show-faces="false" auto-login-link="true" auto-logout-link="true")
 
 
 			div(id="status")
