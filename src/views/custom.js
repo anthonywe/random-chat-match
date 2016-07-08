@@ -4,8 +4,8 @@ $(document).ready(function() {
   $('#form').submit(function(e){
     console.log('submit triggered')
     e.preventDefault()
-    socket.emit('chat message', $('#m').val());
-    console.log('chat emitted: ' + $('#m').val() )
+    socket.emit('chat message', $('#name').val() + ': ' + $('#m').val());
+    console.log('chat emitted: ' + $('#name').val() + ': ' + $('#m').val() )
     $('#m').val('');
     return false;
   });

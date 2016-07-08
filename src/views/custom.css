@@ -1,3 +1,9 @@
+.content {
+	padding-left: 20px;
+	padding-right: 20px;
+}
+
+
 #appname {
 	text-align: center;
 }
@@ -17,14 +23,25 @@
 }
 
 #picturebox {
-	margin-left: 35px;
-	margin-top: 60px;
+/*	margin-left: 35px;*/
+	margin-top: 70px;
+}
+
+#pictures{
+	width: 100%;
 }
 
 #startbtn {
 	margin-left: 35px;
 	width: 17%;
 	margin-top: 0px;
+
+}
+/*[class*="col"]{
+	border: 1px solid blue;
+}*/
+
+#namebtn {
 
 }
 
@@ -56,26 +73,21 @@ textarea {
 	 bottom: 0; 
 	 width: 100%;
 }
-
+/*
 body {
 	font: 13px Helvetica, Arial;
 	font-size: 1em;
-}
+}*/
 
-#msgholder {
-	font: 13px Helvetica, Arial;
-	font-size: : 1em;
-}
 
 #chatfunc {
-	margin-top: 68px;
+	margin-top: 70px;
 }
 
 #msgholder {
-	width: 500px;
+	width: 100%;
 	height: 300px;
 	background-color: white;
-	opacity: 0,5;
 	font: 10px Helvetica, Arial;
 }
 
