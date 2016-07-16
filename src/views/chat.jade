@@ -36,11 +36,12 @@ html(lang='en' class="red ligthen-5")
 						span Your name
 					.row
 						div(class="col m8")
-							input(type="text", value="Anonymous", maxlength=15)#name
+							input(type="text", placeholder="Anonymous", maxlength=15)#name
 						div(class="col m4")
 							button(class="btn waves-effect" id="namebtn") save
 					br
-					//- div(class="msgholder")
+					span(style="font-family: Consolas, Monaco, monospace; font-size: 12px; line-height: 18px;")
+						div(id="alert")
 					form(id="form")
 						textarea(rows="4", cols="50",id="m", placeholder="Break The Ice", maxlength=200)
 						button(class="btn waves-effect") Send

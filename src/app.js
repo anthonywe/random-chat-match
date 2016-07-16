@@ -41,7 +41,7 @@ app.set('view engine', 'jade');
 
 
 app.get('/', function(req, res){
-  res.render('index');
+	res.render('index');
 });
 
 
@@ -73,14 +73,36 @@ app.post('/api', function(req, res){
 
 io.emit('some event', { for: 'everyone' });
 
+clients = [];
+
+//adds an id and stores in clients object when connected
+io.on('connection', function(socket) {
+	console.info('New client connected (id=' + socket.id + ').');
+	clients.push(socket);
+
+//removes the id from the clients object when disconnected
+socket.on('disconnect', function() {
+	var index = clients.indexOf(socket);
+	if (index != -1) {
+		clients.splice(index, 1);
+		console.info('Client gone (id=' + socket.id + ').');
+	}
+});
+});
+
+// a way to send msg to specific socketID
+// io.on('connection', function(socket){
+// 	socket.on('chat message', function(msg){
+// 		socket.broadcast.to(socketid).emit('message', msg)
+// 	})
 
 // connects the user and logs that the when they
 // are connected and disconnected.
 io.on('connection', function(socket){
-  console.log('a user connected');
-  socket.on('disconnect', function(){
-    console.log('user disconnected');
-  });
+	console.log('a user connected');
+	socket.on('disconnect', function(){
+		console.log('user disconnected');
+	});
 });
 
 // gets the sessionId and logs it
@@ -95,24 +117,24 @@ io.on('connection', function(socket){
 
 // //gets the message out of server to sent to chatbox
 io.on('connection', function(socket){
-  socket.on('chat message', function(msg){
-    io.emit('chat message', msg);
-  });
+	socket.on('chat message', function(msg){
+		io.emit('chat message', msg);
+	});
 });
 
 
 
 // receives the msg in server, and logs the msg received
 io.on('connection', function(socket){
-  socket.on('chat message', function(msg){
-    console.log('chat message ' + msg);
-  });
+	socket.on('chat message', function(msg){
+		console.log('chat message ' + msg);
+	});
 });
 
 
 
 sequelize.sync({force: true}).then(function () {
 	http.listen(3000, function(){
-  console.log('listening on *:3000');
-});
+		console.log('listening on *:3000');
+	});
 });

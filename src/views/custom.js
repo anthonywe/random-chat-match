@@ -12,8 +12,26 @@ $(document).ready(function() {
   socket.on('chat message', function(msg){
     $('#messages').append($('<li>').text(msg));
   });
+  $('#namebtn').click( function(){
+    var tempname = $('#name').val();
+    if($('#name').val() == '') {
+      $('#alert').html("You have to fill in the name field");
+      $('#alert').animate({opacity: 1}, 1500);
+      $('#alert').animate({opacity: 0}, 1500);
+      return false;
+    }
+  });
+  $('#form').click( function(){
+    var tempname = $('#name').val();
+    if($('#name').val() == '') {
+      $('#alert').html("You have to fill in the name field");
+      $('#alert').animate({opacity: 1}, 1500);
+      $('#alert').animate({opacity: 0}, 1500);
+      return false;
+    }
+  });
 })
-
+ // $('#alert').fadeIn().delay(2000).fadeOut();
 
 function posttobackend(fbtoken, fbid) {
   console.log('init backend post')

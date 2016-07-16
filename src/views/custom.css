@@ -37,13 +37,16 @@
 	margin-top: 0px;
 
 }
+
+
+#alert {
+	height: 10px;
+	margin-bottom: 5px;
+}
 /*[class*="col"]{
 	border: 1px solid blue;
 }*/
 
-#namebtn {
-
-}
 
 /*chat box css*/
 
